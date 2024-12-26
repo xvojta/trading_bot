@@ -145,6 +145,8 @@ function stop_model()
 function evaluate_model()
 {
   this.classList.add("btn-disabled");
+  document.getElementById("evaluation").innerHTML = 
+  '<div class="progress"><div class="progress-bar evaluation-progress" role="progressbar"></div></div>';
 
   fetch('../backend/controllers/evaluate_model.php', {
     method: 'POST',
@@ -158,9 +160,9 @@ function evaluate_model()
   .then(data => {
     if(data.success)
     {
-      document.getElementById("evaluation").innerText = data.evaluation;
+      document.getElementById("evaluation").innerHTML = '<p class="text-center" id="evaluation">'+ data.evaluation +'</p>';
     }
-    button.classList.remove("btn-disabled");
+    this.classList.remove("btn-disabled");
   })
 }
 

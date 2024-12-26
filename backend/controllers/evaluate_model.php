@@ -21,9 +21,8 @@ if (isset($input['id'])) {
 
     for ($i = 0; $i < 365; $i++) {
         $time = time() - (365 - $i) * (24 * 60 * 60); // current time - (365-i) days in seconds
-        $price = get_eth_price_from_generator($time, $price_data);
+        $price = get_eth_price_binary_search($time, $price_data);
 
-        file_put_contents(__DIR__ . '/evaluate_log.txt', "Price evaluation: " . json_encode($price) . "\n", FILE_APPEND);
         if (!isset($price['price'])) continue;
 
         $trade = check_trades($input['id'], $price['price'], $time, false, false);
@@ -56,28 +55,33 @@ function load_csv_as_generator($csv_file_path) {
         return null;
     }
 
-    $handle = fopen($csv_file_path, 'r');
-    if (!$handle) {
+    $lines = file($csv_file_path, FILE_IGNORE_NEW_LINES | FILE_SKIP_EMPTY_LINES);
+    if (!$lines) {
         return null;
     }
 
-    return $handle; // Return the file handle as the generator source
+    return $lines; // Return the file handle as the generator source
 }
 
-function get_eth_price_from_generator($timestamp, $handle) {
+function get_eth_price_binary_search($timestamp, $lines) {
+    $low = 0;
+    $high = count($lines) - 1;
+
     $last_valid_price = null;
     $last_valid_timestamp = null;
 
-    while (($line = fgets($handle)) !== false) {
-        $parsed = str_getcsv($line);
+    while ($low <= $high) {
+        $mid = intval(($low + $high) / 2);
+        $parsed = str_getcsv($lines[$mid]);
         $candle_time = intval($parsed[0]);
         $price = floatval($parsed[1]);
 
         if ($candle_time <= $timestamp) {
             $last_valid_price = $price;
             $last_valid_timestamp = $candle_time;
+            $low = $mid + 1; // Narrow down to later times
         } else {
-            break;
+            $high = $mid - 1; // Narrow down to earlier times
         }
     }
 

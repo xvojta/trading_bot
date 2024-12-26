@@ -1,19 +1,17 @@
 @charset "UTF-8";
-@keyframes yellowSwipe {
+@keyframes progressAnim {
   0% {
-    background: linear-gradient(to right, gray 0%, yellow 0%, gray 100%);
-    background-size: 200%;
+    width: 0%;
   }
   100% {
-    background: linear-gradient(to right, yellow 100%, yellow 100%);
-    background-size: 200%;
+    width: 100%;
   }
 }
-.btn-warning.btn-disabled {
-  background: linear-gradient(to right, gray 0%, yellow 0%, gray 100%);
-  background-size: 200%;
-  animation: yellowSwipe 2m linear forwards;
-  pointer-events: none;
+.evaluation-progress {
+  width: 0%;
+  animation-name: progressAnim;
+  animation-duration: 90s;
+  animation-timing-function: linear;
 }
 
 /*!
