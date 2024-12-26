@@ -9,7 +9,7 @@ function log_debug($message) {
 
 
 function check_trades(int $model_id, 
-float $current_price = null, $current_time = null, bool $place_order = true, bool $save_trade = true):mixed {
+float $current_price = null, int $current_time = null, bool $place_order = true, bool $save_trade = true):mixed {
     include '/opt/lampp/htdocs/trading_bot/backend/config/database.php';
 
     if ($current_price === null) {

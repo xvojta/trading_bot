@@ -144,6 +144,8 @@ function stop_model()
 
 function evaluate_model()
 {
+  this.classList.add("btn-disabled");
+
   fetch('../backend/controllers/evaluate_model.php', {
     method: 'POST',
     headers: {
@@ -158,6 +160,7 @@ function evaluate_model()
     {
       document.getElementById("evaluation").innerText = data.evaluation;
     }
+    button.classList.remove("btn-disabled");
   })
 }
 
