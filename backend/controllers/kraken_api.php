@@ -9,17 +9,17 @@ function get_eth_price() {
     $url = 'https://api.kraken.com/0/public/Ticker?pair=ETHUSD';
 
     // Initialize cURL session
-    $ch = curl_init($url);
+    /*$ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     // Execute cURL session
     $response = curl_exec($ch);
-    curl_close($ch);
+    curl_close($ch);*/
+    $response = file_get_contents($url);
 
     // Decode the JSON response
     $data = json_decode($response, true);
 
-    error_log("eth price data: " . $data);
     // Check if the response is valid and extract the ETH price
     if (isset($data['result']['XETHZUSD']['c'][0])) {
         return (float)$data['result']['XETHZUSD']['c'][0];
@@ -29,7 +29,6 @@ function get_eth_price() {
 }
 
 function getEthMinMaxPriceLastMonth(int $current_time) {
-    error_log("Get eth min max price log");
     $url = "https://api.kraken.com/0/public/OHLC";
     $pair = "ETHUSD";  // Ethereum to USD
     $interval = 1440;  // Daily candles (1440 minutes)
@@ -43,14 +42,14 @@ function getEthMinMaxPriceLastMonth(int $current_time) {
 
     $request_url = "$url?$query_params";
 
-    $ch = curl_init();
+    /*$ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $request_url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $response = curl_exec($ch);
-    curl_close($ch);
+    curl_close($ch);*/
+    $response = file_get_contents($request_url);
 
     $data = json_decode($response, true);
-    error_log("EthMinMax data: " . $data);
     if (!isset($data))
     {
         return ['error' => "Error fetching data"];
