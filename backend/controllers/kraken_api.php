@@ -19,6 +19,7 @@ function get_eth_price() {
     // Decode the JSON response
     $data = json_decode($response, true);
 
+    error_log("eth price data: " . $data);
     // Check if the response is valid and extract the ETH price
     if (isset($data['result']['XETHZUSD']['c'][0])) {
         return (float)$data['result']['XETHZUSD']['c'][0];
@@ -28,6 +29,7 @@ function get_eth_price() {
 }
 
 function getEthMinMaxPriceLastMonth(int $current_time) {
+    error_log("Get eth min max price log");
     $url = "https://api.kraken.com/0/public/OHLC";
     $pair = "ETHUSD";  // Ethereum to USD
     $interval = 1440;  // Daily candles (1440 minutes)
@@ -48,7 +50,11 @@ function getEthMinMaxPriceLastMonth(int $current_time) {
     curl_close($ch);
 
     $data = json_decode($response, true);
-
+    error_log("EthMinMax data: " . $data);
+    if (!isset($data))
+    {
+        return ['error' => "Error fetching data"];
+    }
     if (isset($data['error']) && !empty($data['error'])) {
         return ['error' => "Error fetching data: " . implode(", ", $data['error'])];
     }

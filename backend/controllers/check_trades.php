@@ -9,7 +9,7 @@ function log_debug($message) {
 
 
 function check_trades(int $model_id, 
-float $current_price = null, int $current_time = null, bool $place_order = true, bool $save_trade = true):mixed {
+float $current_price = null, int $current_time = null, bool $place_order = true, bool $save_trade = true) {
     include '../config/database.php';
 
     if ($current_price === null) {
@@ -23,6 +23,7 @@ float $current_price = null, int $current_time = null, bool $place_order = true,
 
     // Get current price from Kraken API
     $prices = getEthMinMaxPriceLastMonth($current_time);
+    if(isset($prices['error'])) return null;
     $min = $prices['min_price'];
     $max = $prices['max_price'];
 
