@@ -6,6 +6,8 @@ file_put_contents(__DIR__ . '/evaluate_log.txt', "Hi " . "\n", FILE_APPEND);
 
 $input = json_decode(file_get_contents('php://input'), true);
 
+ini_set('memory_limit', '1024M');
+
 if (isset($input['id'])) {
     $usd_wallet = 100000;
     $usd_actual_wallet = $usd_wallet;

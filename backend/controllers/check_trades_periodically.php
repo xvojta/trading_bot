@@ -1,7 +1,7 @@
 <?php
 
-require_once "/opt/lampp/htdocs/trading_bot/backend/controllers/check_trades.php";
-require_once ('/opt/lampp/htdocs/trading_bot/backend/config/database.php');
+require_once "check_trades.php";
+require_once ('../config/database.php');
 
 // Enable error reporting
 ini_set('display_errors', 1);

@@ -9,12 +9,13 @@ function get_eth_price() {
     $url = 'https://api.kraken.com/0/public/Ticker?pair=ETHUSD';
 
     // Initialize cURL session
-    $ch = curl_init($url);
+    /*$ch = curl_init($url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
 
     // Execute cURL session
     $response = curl_exec($ch);
-    curl_close($ch);
+    curl_close($ch);*/
+    $response = file_get_contents($url);
 
     // Decode the JSON response
     $data = json_decode($response, true);
@@ -41,14 +42,18 @@ function getEthMinMaxPriceLastMonth(int $current_time) {
 
     $request_url = "$url?$query_params";
 
-    $ch = curl_init();
+    /*$ch = curl_init();
     curl_setopt($ch, CURLOPT_URL, $request_url);
     curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
     $response = curl_exec($ch);
-    curl_close($ch);
+    curl_close($ch);*/
+    $response = file_get_contents($request_url);
 
     $data = json_decode($response, true);
-
+    if (!isset($data))
+    {
+        return ['error' => "Error fetching data"];
+    }
     if (isset($data['error']) && !empty($data['error'])) {
         return ['error' => "Error fetching data: " . implode(", ", $data['error'])];
     }

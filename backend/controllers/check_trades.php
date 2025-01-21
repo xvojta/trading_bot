@@ -1,6 +1,6 @@
 <?php
 require_once('kraken_api.php');  // Custom Kraken API wrapper
-require_once('/opt/lampp/htdocs/trading_bot/backend/config/database.php');
+require_once('../config/database.php');
 
 // Debug log function
 function log_debug($message) {
@@ -9,8 +9,8 @@ function log_debug($message) {
 
 
 function check_trades(int $model_id, 
-float $current_price = null, int $current_time = null, bool $place_order = true, bool $save_trade = true):mixed {
-    include '/opt/lampp/htdocs/trading_bot/backend/config/database.php';
+float $current_price = null, int $current_time = null, bool $place_order = true, bool $save_trade = true) {
+    include '../config/database.php';
 
     if ($current_price === null) {
         $current_price = get_eth_price();
@@ -23,6 +23,7 @@ float $current_price = null, int $current_time = null, bool $place_order = true,
 
     // Get current price from Kraken API
     $prices = getEthMinMaxPriceLastMonth($current_time);
+    if(isset($prices['error'])) return null;
     $min = $prices['min_price'];
     $max = $prices['max_price'];
 
@@ -63,7 +64,7 @@ float $current_price = null, int $current_time = null, bool $place_order = true,
 }
 
 function save_trade($action, $price, $amount) {
-    require_once '/opt/lampp/htdocs/trading_bot/backend/config/database.php';
+    require_once '../config/database.php';
 
     $stmt = $pdo->prepare('INSERT INTO trade_history (action, price, amount) VALUES (?, ?, ?)');
     try {
