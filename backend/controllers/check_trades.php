@@ -22,7 +22,7 @@ float $current_price = null, int $current_time = null, bool $place_order = true,
     log_debug("Checking trades for model ID: $model_id at price: $current_price");
 
     // Get current price from Kraken API
-    $prices = getEthMinMaxPriceLastMonth($current_price);
+    $prices = getEthMinMaxPriceLastMonth($current_time);
     $min = $prices['min_price'];
     $max = $prices['max_price'];
 
