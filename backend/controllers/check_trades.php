@@ -4,7 +4,7 @@ require_once('../config/database.php');
 
 // Debug log function
 function log_debug($message) {
-    //file_put_contents(__DIR__ . '/bot_log.txt', date('Y-m-d H:i:s') . " - DEBUG: $message\n", FILE_APPEND);
+    file_put_contents(__DIR__ . '/bot_log.txt', date('Y-m-d H:i:s') . " - DEBUG: $message\n", FILE_APPEND);
 }
 
 
@@ -18,8 +18,6 @@ float $current_price = null, int $current_time = null, bool $place_order = true,
     if ($current_time === null) {
         $current_time = time();
     }
-    // Log the current price and model ID
-    log_debug("Checking trades for model ID: $model_id at price: $current_price");
 
     // Get current price from Kraken API
     $prices = getEthMinMaxPriceLastMonth($current_time);
@@ -55,6 +53,7 @@ float $current_price = null, int $current_time = null, bool $place_order = true,
         try {
             if($place_order) place_order('ETHUSD', 'sell', $current_price, $settings['amount']);
             if($save_trade) save_trade('sell', $current_price, $settings['amount']);
+            log_debug("Sell order placed for $current_price with amount: {$settings['amount']}");
             return ['command' => 'sell','price' => $current_price,'amount' => $settings['amount']];
         } catch (\Throwable $th) {
             log_debug("Error placing sell order: " . $th->getMessage());

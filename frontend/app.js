@@ -154,7 +154,8 @@ function evaluate_model()
       'Content-Type': 'application/json'
     },
     body: JSON.stringify({
-      id: document.getElementById("modelSelect").value
+      id: document.getElementById("modelSelect").value,
+      balance: document.getElementById("balance").value
     })
   }).then(response => response.json())
   .then(data => {

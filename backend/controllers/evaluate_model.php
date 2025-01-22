@@ -8,11 +8,14 @@ $input = json_decode(file_get_contents('php://input'), true);
 
 ini_set('memory_limit', '1024M');
 
-if (isset($input['id'])) {
-    $usd_wallet = 100000;
-    $usd_actual_wallet = $usd_wallet;
+file_put_contents(__DIR__ . '/evaluate_log.txt', "Input: " . file_get_contents('php://input') . "\n", FILE_APPEND);
+
+if (isset($input['id']) && isset($input['balance'])) {
+    $usd_balance = $input['balance'];
+    $usd_actual_wallet = $usd_balance;
     $eth_wallet = 0;
-    $usd_minValue = $usd_actual_wallet;
+    $buys = 0;
+    $sells = 0;
 
     file_put_contents(__DIR__ . '/evaluate_log.txt', "Loading price data..." . "\n", FILE_APPEND);
     $price_data = load_csv_as_generator('../../data/ETHEUR_last_one_year.csv');
@@ -43,20 +46,22 @@ if (isset($input['id'])) {
                     if ($usd_actual_wallet - $amount < 0) break;
                     $usd_actual_wallet -= $amount;
                     $eth_wallet += $amount / $price;
+                    $buys ++;
                     break;
                 case 'sell':
-                    if ($eth_wallet - $amount < 0) break;
+                    if ($eth_wallet - ($amount / $price) < 0) break;
                     $usd_actual_wallet += $amount;
-                    $eth_wallet -= $amount / $price;
+                    $eth_wallet -= ($amount / $price);
+                    $sells ++;
                     break;
             }
 
-            $usd_minValue = min([$usd_actual_wallet, $usd_minValue]);
         }
     }
-    $evaluating_price = get_eth_price_binary_search($time, $price_data);
-    $evaluation = ((($usd_actual_wallet-$usd_minValue) + $eth_wallet * $evaluating_price) / ($usd_wallet-$usd_minValue)) . "%";
-    echo json_encode(['success' => true, 'evaluation' => $evaluation, 'usd_wallet' => $usd_actual_wallet, 'eth_wallet' => $eth_wallet, 'usd_min' => $usd_minValue, 'eval_price' => $evaluating_price]);
+    $evaluating_price = get_eth_price_binary_search($time, $price_data)['price']; //TODO what if there is no price for the time
+    $evaluation = (($usd_actual_wallet + $eth_wallet * $evaluating_price) / $usd_balance) * 100 . "%"; //* 100 to convert to %
+    echo json_encode(['success' => true, 'evaluation' => $evaluation, 'usd_wallet' => $usd_actual_wallet, 
+    'eth_wallet' => $eth_wallet, 'eval_price' => $evaluating_price, 'buys' => $buys, 'sells' => $sells]);
 }
 
 function load_csv_as_generator($csv_file_path) {
