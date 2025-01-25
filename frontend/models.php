@@ -8,33 +8,33 @@ require_once(__DIR__  . '/header.php');
 
 <!--Right column with model selection and testing-->
 <div class="col-md-6 mb-3">
-  <h2 class="text-center">Control Trading Models</h2>
+  <h2 class="text-center"><?php echo __('control_models'); ?></h2>
 
-  <label for="modelSelect" class="form-label">Select model</label>
+  <label for="modelSelect" class="form-label"><?php echo __('select_model'); ?></label>
   <select class="form-select mb-3" id="modelSelect" onchange="get_model_status(this.value)"></select>
   <div class="row">
     <div class="col-md-6">
-      <button class="btn btn-success w-100" id="startModel">Start Model</button>
+      <button class="btn btn-success w-100" id="startModel"><?php echo __('start_model'); ?></button>
     </div>
     <div class="col-md-6">
-      <button class="btn btn-danger w-100 mb-3" id="stopModel">Stop Model</button>
+      <button class="btn btn-danger w-100 mb-3" id="stopModel"><?php echo __('stop_model'); ?></button>
     </div>
   </div>
 
   <div style="height: 70px;"></div>
-  <h3 class="text-center">Evaluate Model</h3>
+  <h3 class="text-center"><?php echo __('evaluate_model'); ?></h3>
 
   <div class="row">
-    <label for="balance" class="form-label">USD fictional account balance</label>
+    <label for="balance" class="form-label"><?php echo __('usd_balance'); ?></label>
     <input type="number" class="form-control" id="balance" value="500" required>
     <div style="height: 10px;"></div>
-    <button class="btn btn-warning w-100" id="evaluateModel">Evaluate</button>
+    <button class="btn btn-warning w-100" id="evaluateModel"><?php echo __('evaluate_button'); ?></button>
     <div style="height: 10px;"></div>
     <div id="evaluation"></div>
   </div>
 </div>
 
-<!--Graph-->
+<!-- Graph -->
 <div class="mt-4 d-flex justify-content-center">
   <canvas id="valueOverTimeChart" width="800" height="400"></canvas>
 </div>

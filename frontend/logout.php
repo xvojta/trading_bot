@@ -6,7 +6,7 @@ $logged_in = false;
 ?>
 
 <div class="col-md-6">
-    <h2 class="text-center">Logging out...</h2>
+    <h2 class="text-center"><?php echo __('logging_out'); ?></h2>
 </div>
 
 <script>

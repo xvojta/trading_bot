@@ -38,8 +38,8 @@ if($logged_in)
 <div class="container text-center">
     <h1 class="title">TRADING BOT</h1>
     <div class="button-container">
-        <a href="login.php" class="btn btn-primary btn-custom">Log In</a>
-        <a href="register.php" class="btn btn-secondary btn-custom">Register</a>
+        <a href="login.php" class="btn btn-primary btn-custom"><?php echo __('login'); ?></a>
+        <a href="register.php" class="btn btn-secondary btn-custom"><?php echo __('register'); ?></a>
     </div>
 </div>
 
