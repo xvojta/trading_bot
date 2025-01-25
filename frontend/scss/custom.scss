@@ -21,7 +21,7 @@ $theme-colors: map-merge($theme-colors, (
 .evaluation-progress {
   width: 0%;
   animation-name: progressAnim;
-  animation-duration: 90s;
+  animation-duration: 5s;
   animation-timing-function: linear;
 }
 

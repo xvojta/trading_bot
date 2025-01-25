@@ -1,29 +1,43 @@
 <?php
 require_once('kraken_api.php');  // Custom Kraken API wrapper
 require_once('../config/database.php');
+require_once('price_history_from_file.php');
 
 // Debug log function
 function log_debug($message) {
-    file_put_contents(__DIR__ . '/bot_log.txt', date('Y-m-d H:i:s') . " - DEBUG: $message\n", FILE_APPEND);
+    file_put_contents(__DIR__ . '/evaluate_log.txt', date('Y-m-d H:i:s') . " - DEBUG: $message\n", FILE_APPEND);
 }
 
 
-function check_trades(int $model_id, 
-float $current_price = null, int $current_time = null, bool $place_order = true, bool $save_trade = true) {
+function check_trades(int $model_id, int $current_time = null, bool $place_order = true, bool $save_trade = true) {
+    $startTime = microtime(true);
     include '../config/database.php';
+    $checkFromHistory = true;
 
-    if ($current_price === null) {
-        $current_price = get_eth_price();
-    }
+    $current_price;
+    $prices;
+
     if ($current_time === null) {
         $current_time = time();
+        $checkFromHistory = false;
+        $current_price = get_eth_price();
+        // Get current price from Kraken API
+        $prices = getEthMinMaxPriceLastMonth($current_time);
+    } else {
+        $current_price = get_eth_history_price($current_time)['price'];
+        log_debug("Got current price: " . floor((microtime(true)-$startTime) * 1000));
+        $prices = get_eth_price_month_extremes($current_time - (31 * 24 * 60 * 60)); //curent time - one month
+        log_debug("Got prices: " . floor((microtime(true)-$startTime) * 1000));
+        if(!$current_price || isset($prices['error'])) {
+            log_debug("Error searching for price in check_trades.php on line 25");
+            return null;
+        }
     }
 
-    // Get current price from Kraken API
-    $prices = getEthMinMaxPriceLastMonth($current_time);
     if(isset($prices['error'])) return null;
     $min = $prices['min_price'];
     $max = $prices['max_price'];
+    log_debug("Min price: " . $min . ", Max price: " . $max);
 
     // Fetch user-specified thresholds from DB (e.g., buy dip, sell target)
     $settings = $pdo->query("SELECT * FROM trade_settings WHERE `id` = " . $model_id)->fetch(PDO::FETCH_ASSOC);

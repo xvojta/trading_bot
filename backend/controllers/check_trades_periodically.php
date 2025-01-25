@@ -2,14 +2,21 @@
 
 require_once "check_trades.php";
 require_once ('../config/database.php');
+$status_file = "bot_running.status";
+$not_terminated = true;
 
 // Enable error reporting
 ini_set('display_errors', 1);
 ini_set('display_startup_errors', 1);
 error_reporting(E_ALL);
 
+if(file_exists($status_file)) 
+    $not_terminated = false;
+else
+    fopen($status_file, "w");
+
 // Continuous loop
-while (true) {
+while ($not_terminated) {
     // Log the iteration start time
     file_put_contents(__DIR__ . '/bot_log.txt', "Iteration started at: " . date('Y-m-d H:i:s') . "\n", FILE_APPEND);
 
