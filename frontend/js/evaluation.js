@@ -1,3 +1,40 @@
+//Graph settings
+const ctx = document.getElementById('valueOverTimeChart').getContext('2d');
+const valueOverTimeChart = new Chart(ctx, {
+    type: 'line',
+    data: {
+        labels: [], // Add your dates here
+        datasets: [{
+            label: 'Value Over Time',
+            data: [], // Add your values here
+            borderColor: 'rgba(75, 192, 192, 1)',
+            backgroundColor: 'rgba(75, 192, 192, 0.2)',
+            borderWidth: 2
+        }]
+    },
+    options: {
+        responsive: true,
+        scales: {
+            x: {
+                type: 'time',
+                time: {
+                    unit: 'day'
+                },
+                title: {
+                    display: true,
+                    text: 'Date'
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: 'Value'
+                }
+            }
+        }
+    }
+});
+
 function fetchModels() {
   fetch('../backend/controllers/get_models.php') // Path to your PHP script
     .then(response => response.json())
@@ -85,7 +122,37 @@ function evaluate_model()
   .then(data => {
     if(data.success)
     {
-      document.getElementById("evaluation").innerHTML = '<p class="text-center" id="evaluation">'+ data.evaluation +'</p>';
+      // Select the container where the data will be displayed
+      const container = document.getElementById("evaluation");
+
+      // Clear the container before adding new data
+      container.innerHTML = "";
+
+      // Function to create a formatted row
+      const createRow = (label, value) => {
+        const row = document.createElement("p");
+        row.classList.add("fs-5", "text-left", "my-2");
+        row.innerHTML = `<strong>${label}:</strong> ${value}`;
+        return row;
+      };
+        
+      // Helper function to format float values to 3 decimal places
+      const formatFloat = (num) => parseFloat(num).toFixed(3);
+
+      // Append formatted rows to the container
+      container.appendChild(createRow("Evaluation", `${formatFloat(data.evaluation)}%`));
+      container.appendChild(createRow("USD Wallet", `$${formatFloat(data.usd_wallet)}`));
+      container.appendChild(createRow("ETH Wallet", `${formatFloat(data.eth_wallet)} ETH`));
+      container.appendChild(createRow("Evaluation Price", `$${formatFloat(data.eval_price)}`));
+      container.appendChild(createRow("Final Balance", `$${formatFloat(data.final_balance)}`));
+      container.appendChild(createRow("Buys", data.buys));
+      container.appendChild(createRow("Sells", data.sells));
+
+      //feed graph the data
+      grahpData = data.graphData;
+      valueOverTimeChart.data.labels = grahpData.map(item => item.date);
+      valueOverTimeChart.data.datasets[0].data = grahpData.map(item => item.value);
+      valueOverTimeChart.update();
     }
     this.classList.remove("btn-disabled");
   })
@@ -117,6 +184,3 @@ window.addEventListener("load", fetchModels);
 document.getElementById("startModel").addEventListener("click", start_model);
 document.getElementById("stopModel").addEventListener("click", stop_model);
 document.getElementById("evaluateModel").addEventListener("click", evaluate_model);
-
-// Optionally, you can refresh trade history every few seconds:
-// setInterval(fetchTradeHistory, 30000); // Refresh every 30 seconds

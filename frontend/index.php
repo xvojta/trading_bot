@@ -2,12 +2,11 @@
 require_once(__DIR__  . '/header.php');
 
 if($logged_in)
-echo '
-    <script>
-        if(!window.location.href.includes("index.php"))
-            window.location.href = "evaluate.php";
-    </script>
-';
+    echo '
+        <script>
+            window.location.href = "models.php";
+        </script>
+    ';
 ?>
 
 <style>

@@ -14,6 +14,7 @@ if (isset($input['id']) && isset($input['balance'])) {
     $eth_wallet = 0;
     $buys = 0;
     $sells = 0;
+    $graph_data = [];
 
     $time = time() - (365 * 24 * 60 * 60); // current time 365 days in seconds
 
@@ -44,13 +45,15 @@ if (isset($input['id']) && isset($input['balance'])) {
                     $sells ++;
                     break;
             }
-
+            $graph_data[] = ['date' => date("Y-m-d", $time), 'value' => ($usd_actual_wallet + $eth_wallet * $price)];
         }
     }
     //$evaluating_price = get_eth_history_price($time, $price_data)['price']; //TODO what if there is no price for the time
-    $evaluation = (($usd_actual_wallet + $eth_wallet * $price) / $usd_balance) * 100 . "%"; //* 100 to convert to %
+    $final_balance = ($usd_actual_wallet + $eth_wallet * $price);
+    $evaluation = $final_balance / $usd_balance * 100; //* 100 to convert to %
     echo json_encode(['success' => true, 'evaluation' => $evaluation, 'usd_wallet' => $usd_actual_wallet, 
-    'eth_wallet' => $eth_wallet, 'eval_price' => $price, 'buys' => $buys, 'sells' => $sells]);
+    'eth_wallet' => $eth_wallet, 'eval_price' => $price, 'buys' => $buys, 'sells' => $sells, 'graphData' => $graph_data,
+    'final_balance' => $final_balance]);
 }
 
 function load_csv_as_generator($csv_file_path) {
