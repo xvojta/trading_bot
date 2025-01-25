@@ -6,8 +6,8 @@ error_reporting(E_ALL & ~E_NOTICE & ~E_DEPRECATED);
 ini_set('display_errors', 1);
 
 // require_once the database connection
-require_once '../config/database.php';
-require_once 'check_trades.php';
+require_once(__DIR__  . '/../config/database.php');
+require_once(__DIR__  . '/account_manager.php');
 
 // Get the JSON payload from the request
 $input = json_decode(file_get_contents('php://input'), true);
@@ -27,14 +27,11 @@ if (isset($input['name'], $input['dip'], $input['sell'], $input['amount'])) {
 
     // Insert the trade settings into the database
     try {
-        $stmt = $pdo->prepare('INSERT INTO trade_settings (`name`, dip, sell, amount) VALUES (?, ?, ?, ?)');
-        $stmt->execute([$model_name, $buy_dip, $sell_target, $usd_amount]);
+        $stmt = $pdo->prepare('INSERT INTO trade_settings (`name`, owner, dip, sell, amount) VALUES (?, ?, ?, ?, ?)');
+        $stmt->execute([$model_name, $uid, $buy_dip, $sell_target, $usd_amount]);
 
         // Successfully saved settings
-        echo json_encode(['success' => true, 'message' => 'Trading bot started with your settings.' . sprintf("%.3f", get_eth_price())]);
-
-        check_trades(get_eth_price(), 15);
-
+        echo json_encode(['success' => true, 'message' => 'Trading bot started with your settings.']);
     } catch (PDOException $e) {
         echo json_encode(['success' => false, 'message' => 'Failed to save trade settings: ' . $e->getMessage(), 0]);
     }

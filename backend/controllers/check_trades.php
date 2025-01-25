@@ -1,7 +1,7 @@
 <?php
-require_once('kraken_api.php');  // Custom Kraken API wrapper
-require_once('../config/database.php');
-require_once('price_history_from_file.php');
+require_once(__DIR__  . '/kraken_api.php');  // Custom Kraken API wrapper
+require_once(__DIR__  . '/../config/database.php');
+require_once(__DIR__  . '/price_history_from_file.php');
 
 // Debug log function
 function log_debug($message) {
@@ -77,7 +77,7 @@ function check_trades(int $model_id, int $current_time = null, bool $place_order
 }
 
 function save_trade($action, $price, $amount) {
-    require_once '../config/database.php';
+    require_once(__DIR__  . '/../config/database.php');
 
     $stmt = $pdo->prepare('INSERT INTO trade_history (action, price, amount) VALUES (?, ?, ?)');
     try {

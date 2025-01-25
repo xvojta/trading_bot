@@ -1,5 +1,5 @@
 <?php
-require_once('header.php');
+require_once(__DIR__  . '/header.php');
 ?>
 
 <div class="col-md-6 mb-3">
@@ -26,5 +26,5 @@ require_once('header.php');
 <script src="js/trade_history.js"></script>
 
 <?php
-require_once('footer.php');
+require_once(__DIR__  . '/footer.php');
 ?>

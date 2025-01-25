@@ -1,5 +1,5 @@
 <?php
-require_once('header.php');
+require_once(__DIR__  . '/header.php');
 ?>
 
 <!--Left column with new model creation-->
@@ -31,5 +31,5 @@ require_once('header.php');
 <script src='js/settings.js'></script>
 
 <?php
-require_once('footer.php');
+require_once(__DIR__  . '/footer.php');
 ?>

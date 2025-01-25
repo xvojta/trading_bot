@@ -1,7 +1,7 @@
 <?php
 
-require_once "check_trades.php";
-require_once ('../config/database.php');
+require_once(__DIR__  . '/check_trades.php');
+require_once(__DIR__  . '/../config/database.php');
 $status_file = "bot_running.status";
 $not_terminated = true;
 

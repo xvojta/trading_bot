@@ -1,6 +1,6 @@
 <?php
-require_once 'check_trades.php';
-require_once('kraken_api.php');
+require_once(__DIR__  . '/check_trades.php');
+require_once(__DIR__  . '/kraken_api.php');
 
 log_debug("hi!");
 

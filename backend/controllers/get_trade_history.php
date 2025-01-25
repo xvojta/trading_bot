@@ -1,6 +1,6 @@
 <?php
 // require_once your database connection
-require_once '../config/database.php';
+require_once(__DIR__  . '/../config/database.php');
 
 // Fetch trade history from the 'trades' table
 try {
