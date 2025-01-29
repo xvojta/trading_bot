@@ -51,6 +51,7 @@ function get_eth_price_month_extremes($timestamp) {
     global $price_extremes;
     $min_price = PHP_FLOAT_MAX;
     $max_price = PHP_FLOAT_MIN;
+    $candle_time = PHP_INT_MIN;
     for($i = 0; $candle_time < $timestamp + (31 * 24 * 60 * 60); $i++) //month in seconds
     {
         if(!isset($price_extremes[$i])) break;

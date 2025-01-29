@@ -15,12 +15,12 @@ if (isset($input['id']) && isset($input['balance'])) {
     $buys = 0;
     $sells = 0;
     $graph_data = [];
+    $price; // = get_eth_price_binary_search($time, $price_data);
 
     $time = time() - (365 * 24 * 60 * 60); // current time 365 days in seconds
 
     for ($i = 0; $i < 365; $i++) {
         $time += (24 * 60 * 60); // moves time by one day
-        $price; // = get_eth_price_binary_search($time, $price_data);
         log_debug("Day: ". $i);
 
         $trade = check_trades($input['id'], /*$price['price'], */$time, false, false);
