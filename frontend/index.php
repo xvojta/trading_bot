@@ -10,13 +10,12 @@ if($logged_in)
 ?>
 
 <style>
-        body {
+        .mainText {
             display: flex;
             align-items: center;
             justify-content: center;
             min-height: 100vh;
             margin: 0;
-            background-color: #f8f9fa;
         }
         .title {
             font-size: 4rem;
@@ -35,11 +34,13 @@ if($logged_in)
         }
 </style>
 
-<div class="container text-center">
-    <h1 class="title">TRADING BOT</h1>
-    <div class="button-container">
-        <a href="login.php" class="btn btn-primary btn-custom"><?php echo __('login'); ?></a>
-        <a href="register.php" class="btn btn-secondary btn-custom"><?php echo __('register'); ?></a>
+<div class="mainText">
+    <div class="container text-center">
+        <h1 class="title">TRADING BOT</h1>
+        <div class="button-container">
+            <a href="login.php" class="btn btn-primary btn-custom"><?php echo __('login'); ?></a>
+            <a href="register.php" class="btn btn-secondary btn-custom"><?php echo __('register'); ?></a>
+        </div>
     </div>
 </div>
 

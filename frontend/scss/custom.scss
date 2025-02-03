@@ -1,8 +1,12 @@
 // Import Bootstrap core
 @import "../../node_modules/bootstrap/scss/functions";
 @import "../../node_modules/bootstrap/scss/variables";
+@import "../../node_modules/bootstrap/scss/mixins";
 
-$primary: $green; // Set the $primary variable
+// Customizations
+$primary: $green; // Set primary color
+$nav-link-color: gray !important;  // Change Bootstrap nav link color
+$nav-link-hover-color: darkgray !important; // Change hover color
 
 // Merge with existing $theme-colors map
 $theme-colors: map-merge($theme-colors, (
@@ -25,5 +29,5 @@ $theme-colors: map-merge($theme-colors, (
   animation-timing-function: linear;
 }
 
-// Import Bootstrap components
+// Import Bootstrap components (AFTER setting variables)
 @import "../../node_modules/bootstrap/scss/bootstrap";

@@ -33,5 +33,17 @@
     "time": "Time",
     "action": "Action",
     "price": "Price",
-    "amount": "Amount"
+    "amount": "Amount",
+    "value_over_time": "Value Over Time",
+    "date": "Date",
+    "value": "Value",
+    "no_models_available": "No models available.",
+    "error_loading_models": "Error loading models.",
+    "evaluation": "Evaluation",
+    "usd_wallet": "USD Wallet",
+    "eth_wallet": "ETH Wallet",
+    "evaluation_price": "Evaluation Price",
+    "final_balance": "Final Balance",
+    "buys": "Buys",
+    "sells": "Sells"
 }

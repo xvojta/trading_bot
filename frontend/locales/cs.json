@@ -33,5 +33,18 @@
     "time": "Čas",
     "action": "Akce",
     "price": "Cena",
-    "amount": "Množství" 
+    "amount": "Množství",
+    "value_over_time": "Hodnota v čase",
+    "date": "Datum",
+    "value": "Hodnota",
+    "no_models_available": "Žádné modely nejsou dostupné.",
+    "error_loading_models": "Chyba při načítání modelů.",
+    "evaluation": "Vyhodnocení",
+    "usd_wallet": "USD Peněženka",
+    "eth_wallet": "ETH Peněženka",
+    "evaluation_price": "Vyhodnocovací cena",
+    "final_balance": "Konečný zůstatek",
+    "buys": "Nákupy",
+    "sells": "Prodeje"
+  
 }  
