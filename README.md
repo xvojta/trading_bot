@@ -26,7 +26,7 @@ This platform allows users to create and evaluate trading models based on histor
 The system calculates the minimum and maximum over the last 31 days each day and evaluates whether the ETH price matches the defined thresholds for buying or selling. If the conditions are met, the transaction is automatically executed within the simulation. This allows users to test their trading strategies before deploying them on the real market.
 
 ## Possible Future Project Expansion
-This project is ready for deployment in real trading via the Kraken API, but this functionality is not part of the final thesis:
+This project is ready for deployment in real trading via the Kraken API, but this functionality is not part of the Maturita project:
 
 - Using a regularly running PHP script, the ETH prices of currently running models will be checked daily (option to enable/disable in the tab **[Models](models.php)**).
 - If the set thresholds are met, real buy/sell transactions will be executed according to the model settings on your Kraken platform account.
