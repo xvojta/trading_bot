@@ -11,7 +11,7 @@ SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
 SET time_zone = "+01:00";  -- Central European Time (CET, Standard Time)
 
-DROP DATABASE trading_bot;
+DROP DATABASE IF EXISTS trading_bot;
 
 -- Create the database
 CREATE DATABASE IF NOT EXISTS `trading_bot` DEFAULT CHARACTER SET utf8mb4 COLLATE utf8mb4_general_ci;
@@ -52,19 +52,19 @@ CREATE TABLE IF NOT EXISTS `trade_settings` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 -- Dumping data for table `users`
---INSERT INTO `users` (`id`, `username`, `password`) VALUES
---(1, 'admin', 'admin'),
---(2, 'honza', 'honza123'),
---(3, 'newUser', '123');
+-- INSERT INTO `users` (`id`, `username`, `password`) VALUES
+-- (1, 'admin', 'admin'),
+-- (2, 'honza', 'honza123'),
+-- (3, 'newUser', '123');
 
 -- Dumping data for table `trade_settings`
---INSERT INTO `trade_settings` (`id`, `owner`, `name`, `dip`, `sell`, `amount`, `running`, `created_at`) VALUES
---(37, 1, 'Test1', 100.00, 100.00, 10.0000, b'1', '2024-10-08 17:32:05'),
---(38, 1, 'Test2', 12.00, 23.00, 3.0000, b'0', '2024-10-09 07:15:17'),
---(39, 1, 'Apartment', 34.00, 34.00, 10.0000, b'1', '2024-10-10 20:08:52'),
---(40, 1, 'Apartment', 34.00, 34.00, 10.0000, b'0', '2024-10-10 20:09:11'),
---(41, 1, 'Best', 10.00, 10.00, 500.0000, b'0', '2024-12-29 07:31:03'),
---(42, 1, 'Funcni', 10.00, 30.00, 700.0000, b'0', '2025-01-08 08:16:23'),
---(47, 2, 'Test bot', 10.00, 5.00, 100.0000, b'0', '2025-01-25 15:01:12');
+-- INSERT INTO `trade_settings` (`id`, `owner`, `name`, `dip`, `sell`, `amount`, `running`, `created_at`) VALUES
+-- (37, 1, 'Test1', 100.00, 100.00, 10.0000, b'1', '2024-10-08 17:32:05'),
+-- (38, 1, 'Test2', 12.00, 23.00, 3.0000, b'0', '2024-10-09 07:15:17'),
+-- (39, 1, 'Apartment', 34.00, 34.00, 10.0000, b'1', '2024-10-10 20:08:52'),
+-- (40, 1, 'Apartment', 34.00, 34.00, 10.0000, b'0', '2024-10-10 20:09:11'),
+-- (41, 1, 'Best', 10.00, 10.00, 500.0000, b'0', '2024-12-29 07:31:03'),
+-- (42, 1, 'Funcni', 10.00, 30.00, 700.0000, b'0', '2025-01-08 08:16:23'),
+-- (47, 2, 'Test bot', 10.00, 5.00, 100.0000, b'0', '2025-01-25 15:01:12');
 
 COMMIT;

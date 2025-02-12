@@ -2,5 +2,6 @@
 1. Install wamp (https://wampserver.aviatechno.net/)
 2. Copy files from this repo to www directory
 3. To root directory of the project (www/trading_bot) extract data folder from ([download from onedrive](https://gymtisnov-my.sharepoint.com/:u:/g/personal/vojtech_ondracek_gym-tisnov_cz/EdWz7-Sb1g9DoQZlDFpHmP4BXIsiD0igZvceHdJQ-N2q2Q?e=aZYw41))
-4. Run backend/db/create_database.sql script on your SQL database
-5. Run the project at "http://localhost/trading_bot/frontend/"
+4. Run backend/db/create_database.sql script on your MySQL database
+5. Fill in your database credentials in backend/config/database.php
+6. Run the project at "http://localhost/trading_bot/frontend/"

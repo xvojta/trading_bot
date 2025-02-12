@@ -5,11 +5,6 @@ require_once(__DIR__  . '/../config/database.php');
 $status_file = "bot_running.status";
 $not_terminated = true;
 
-// Enable error reporting
-ini_set('display_errors', 1);
-ini_set('display_startup_errors', 1);
-error_reporting(E_ALL);
-
 if(file_exists($status_file)) 
     $not_terminated = false;
 else

@@ -1,5 +1,8 @@
 <?php
-$translation = loadTranslations($_SESSION['lang'] ?? 'cs');
+if(!$_SESSION['lang'])
+    $_SESSION['lang'] = 'cs';
+
+$translation = loadTranslations($_SESSION['lang']);
 
 function loadTranslations($lang = 'cs') {
     $file = __DIR__ . "/../../frontend/locales/{$lang}.json";

@@ -45,12 +45,12 @@ function login($uname, $passwd)
     $stmt = $pdo->prepare('SELECT * FROM users WHERE username = ?');
     $stmt->bindParam(1, $uname);
     $stmt->execute(); // Execute the statement
-    $data = $stmt->fetchAll(PDO::FETCH_ASSOC)[0]; // Fetch the results
-
+    $data = $stmt->fetchAll(PDO::FETCH_ASSOC); // Fetch the results
     //return "stmt: " . json_encode($stmt) . "<br> data: " . json_encode($data);
     if(!isset($data) || $data == [])
         return ['succsess' => false, 'message' => "User with this username not found"];
     else {
+        $data = $data[0];
         if($data['password'] == $passwd) {
             $_SESSION[$INDEX_LOGGED_IN] = true;
             $_SESSION[$INDEX_USER_ID] = $data['id'];

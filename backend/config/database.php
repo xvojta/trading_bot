@@ -2,7 +2,7 @@
 $host = 'localhost';
 $db = 'trading_bot';
 $user = 'root'; // Default user for XAMPP
-$pass = 'root';     // Default password for XAMPP
+$pass = '';     // Default password for XAMPP
 
 $dsn = "mysql:host=$host;dbname=$db;charset=utf8mb4";
 try {
