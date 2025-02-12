@@ -56,6 +56,29 @@
     "buys_info": "Počet provedených nákupních transakcí",
     "sells_info": "Počet provedených prodejních transakcí",
     "buys": "Nákupy",
-    "sells": "Prodeje"
+    "sells": "Prodeje",
+    "about": "O Platformě",
   
+    "trading_bot_platform": "Automatická Obchodní Platforma",
+    "overview": "Přehled",
+    "overview_text": "Tato platforma umožňuje uživatelům vytvářet a vyhodnocovat obchodní modely na základě historických dat z posledního roku. Můžete se zaregistrovat, vytvářet modely, přizpůsobovat jejich nastavení a testovat je proti reálným historickým tržním podmínkám.",
+    
+    "how_it_works": "Jak to funguje",
+    "create_account": "Vytvořit účet",
+    "create_account_text": "Registrujte se a přihlaste se k přístupu k funkcím vytváření modelů.",
+    "create_model_text": "Definujte svou strategii nastavením konkrétních parametrů.",
+    "evaluate_model_text": "Simulujte svou strategii na historických tržních datech, abyste zjistili, jak by fungovala.",
+    
+    "model_settings": "Nastavení modelu",
+    "buy_dip_percentage": "Procento poklesu nákupu",
+    "sell_target_percentage": "Cílové procento prodeje",
+    
+    "evaluation_process": "Proces vyhodnocení",
+    "evaluation_process_text": "Systém každý den kontroluje, zda cena ETH odpovídá definovaným hranicím pro nákup nebo prodej. Pokud jsou podmínky splněny, transakce je automaticky provedena v rámci simulace vyhodnocení. To umožňuje uživatelům testovat své obchodní strategie před jejich nasazením v reálném obchodování.",
+    
+    "future_implementations": "Budoucí implementace",
+    "future_implementations_text": "Tento projekt je připraven k implementaci reálného obchodování prostřednictvím Kraken API:",
+    "future_point_1": "Obchodní modely by mohly být nasazeny k automatické kontrole cen ETH jednou denně.",
+    "future_point_2": "Pokud jsou splněny prahové hodnoty, budou provedeny reálné nákupní/prodejní transakce podle vašeho modelu.",
+    "future_point_3": "To by umožnilo automatizované obchodní strategie kryptoměn na základě živých tržních dat."
 }  

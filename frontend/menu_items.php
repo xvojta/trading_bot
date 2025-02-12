@@ -7,3 +7,6 @@
 <li class="nav-item">
     <a class="nav-link" href="trade_history.php"><?php echo __('trade_history'); ?></a>
 </li>
+<li class="nav-item">
+    <a class="nav-link" href="about.php"><?php echo __('about'); ?></a>
+</li>
