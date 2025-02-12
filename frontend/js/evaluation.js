@@ -12,10 +12,15 @@ function translate(key) {
 }
 
 //function to insert HTML
-const createRow = (label, value) => {
+const createRow = (label, value, tooltipKey = "") => {
   const row = document.createElement("p");
   row.classList.add("fs-5", "text-left", "my-2");
-  row.innerHTML = `<strong>${translate(label)}:</strong> ${value}`;
+
+  row.innerHTML = `
+      <strong>${translate(label)}:</strong> ${value}
+      ${tooltipKey ? `<i class="bi bi-info-circle" data-bs-toggle="tooltip" title="${translate(tooltipKey)}"></i>` : ""}
+  `;
+
   return row;
 };
 
@@ -73,7 +78,10 @@ function fetchModels() {
         get_model_status(data[0].id); // Get the selected model status
 
       } else {
-        document.getElementById('status').textContent = translate('no_models_available');
+        document.getElementById("evaluateModel").disabled = true;
+        document.getElementById("startModel").disabled = true;
+        document.getElementById("stopModel").disabled = true;
+          document.getElementById('status').textContent = translate('no_models_available');
       }
     })
     .catch(error => {
@@ -111,7 +119,7 @@ function stop_model() {
 }
 
 function evaluate_model() {
-  this.classList.add("btn-disabled");
+  this.disabled = true;
   document.getElementById("evaluation").innerHTML = 
     '<div class="progress"><div class="progress-bar evaluation-progress" role="progressbar"></div></div>';
 
@@ -130,13 +138,17 @@ function evaluate_model() {
 
       const formatFloat = (num) => parseFloat(num).toFixed(3);
 
-      container.appendChild(createRow("evaluation", `${formatFloat(data.evaluation)}%`));
-      container.appendChild(createRow("usd_wallet", `$${formatFloat(data.usd_wallet)}`));
-      container.appendChild(createRow("eth_wallet", `${formatFloat(data.eth_wallet)} ETH`));
-      container.appendChild(createRow("evaluation_price", `$${formatFloat(data.eval_price)}`));
-      container.appendChild(createRow("final_balance", `$${formatFloat(data.final_balance)}`));
-      container.appendChild(createRow("buys", data.buys));
-      container.appendChild(createRow("sells", data.sells));
+      container.appendChild(createRow("evaluation", `${formatFloat(data.evaluation)}%`, "evaluation_info"));
+      container.appendChild(createRow("usd_wallet", `$${formatFloat(data.usd_wallet)}`, "usd_wallet_info"));
+      container.appendChild(createRow("eth_wallet", `${formatFloat(data.eth_wallet)} ETH`, "eth_wallet_info"));
+      container.appendChild(createRow("evaluation_price", `$${formatFloat(data.eval_price)}`, "evaluation_price_info"));
+      container.appendChild(createRow("final_balance", `$${formatFloat(data.final_balance)}`, "final_balance_info"));
+      container.appendChild(createRow("buys", data.buys, "buys_info"));
+      container.appendChild(createRow("sells", data.sells, "sells_info"));      
+
+      // Re-initialize Bootstrap tooltips after adding elements
+      const tooltipTriggerList = document.querySelectorAll('[data-bs-toggle="tooltip"]');
+      tooltipTriggerList.forEach(tooltip => new bootstrap.Tooltip(tooltip));
 
       // Update the chart
       graphData = data.graphData;
@@ -144,7 +156,7 @@ function evaluate_model() {
       valueOverTimeChart.data.datasets[0].data = graphData.map(item => item.value);
       valueOverTimeChart.update();
     }
-    this.classList.remove("btn-disabled");
+    this.disabled = false;
   });
 }
 

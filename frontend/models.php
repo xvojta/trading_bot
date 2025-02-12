@@ -27,7 +27,7 @@ require_once(__DIR__  . '/header.php');
 
   <div class="row">
     <label for="balance" class="form-label"><?php echo __('usd_balance'); ?>
-      <i class="bi bi-info-circle" data-bs-toggle="tooltip" title="<?php echo __('evaluate_model');?>"></i>
+      <i class="bi bi-info-circle" data-bs-toggle="tooltip" title="<?php echo __('usd_balance_info');?>"></i>
     </label>
     <input type="number" class="form-control" id="balance" value="500" required>
     <div style="height: 10px;"></div>
