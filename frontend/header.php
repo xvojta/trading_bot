@@ -12,7 +12,7 @@
     
     <?php 
     //TODO turn off error reporting for production
-    //error_reporting(0); 
+    error_reporting(0); 
 
     //Session start
     require_once(__DIR__  . '/../backend/controllers/account_manager.php');

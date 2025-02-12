@@ -68,17 +68,17 @@
     "create_account_text": "Register and log in to access the model creation features.",
     "create_model_text": "Define your strategy by setting specific parameters.",
     "evaluate_model_text": "Simulate your strategy on historical market data to see how it would have performed.",
-    
+
     "model_settings": "Model Settings",
-    "buy_dip_percentage": "Buy Dip Percentage",
-    "sell_target_percentage": "Sell Target Percentage",
-    
+
     "evaluation_process": "Evaluation Process",
-    "evaluation_process_text": "The system checks once per day whether the ETH price matches the defined buy or sell thresholds. If the conditions are met, the transaction is executed automatically within the evaluation simulation. This allows users to test their trading strategies before deploying them in real-time trading.",
-    
-    "future_implementations": "Future Implementations",
-    "future_implementations_text": "This project is built with the potential to enable real-time trading via the Kraken API:",
-    "future_point_1": "The trading models could be deployed to automatically check ETH prices once a day.",
-    "future_point_2": "If thresholds are met, real buy/sell transactions would be executed based on your model.",
-    "future_point_3": "This would allow for automated cryptocurrency trading strategies running on live market data."
+    "evaluation_process_text": "The system calculates the minimum and maximum over the last 31 days each day and evaluates whether the ETH price matches the defined thresholds for buying or selling. If the conditions are met, the transaction is automatically executed within the simulation. This allows users to test their trading strategies before deploying them on the real market.",
+
+    "future_implementations": "Possible Future Project Expansion",
+    "future_implementations_text": "This project is ready for deployment in real trading via the Kraken API, but this functionality is not part of the final thesis:",
+
+    "future_point_1": "Using a regularly running PHP script, the ETH prices of currently running models will be checked daily (option to enable/disable in the tab ",
+    "future_point_2": "If the set thresholds are met, real buy/sell transactions will be executed according to the model settings on your Kraken platform account.",
+    "future_point_3": "This will allow tested trading strategies to be implemented on the real market.",
+    "future_point_4": "Executed transactions will then be saved in the database and can be viewed in the tab "
 }

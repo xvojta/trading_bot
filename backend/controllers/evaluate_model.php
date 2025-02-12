@@ -48,7 +48,7 @@ if (isset($input['id']) && isset($input['balance'])) {
             $graph_data[] = ['date' => date("Y-m-d", $time), 'value' => ($usd_actual_wallet + $eth_wallet * $price)];
         }
     }
-    //$evaluating_price = get_eth_history_price($time, $price_data)['price']; //TODO what if there is no price for the time
+
     $final_balance = ($usd_actual_wallet + $eth_wallet * $price);
     $evaluation = $final_balance / $usd_balance * 100; //* 100 to convert to %
     echo json_encode(['success' => true, 'evaluation' => $evaluation, 'usd_wallet' => $usd_actual_wallet, 

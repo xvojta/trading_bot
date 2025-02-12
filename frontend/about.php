@@ -23,8 +23,8 @@ require_once(__DIR__  . '/header.php');
         <h2><?php echo __('model_settings'); ?></h2>
         <ul>
             <li><strong><?php echo __('volume_per_trade'); ?></strong>: <?php echo __('volume_per_trade_info'); ?></li>
-            <li><strong><?php echo __('buy_dip_percentage'); ?></strong>: <?php echo __('buy_dip_info'); ?></li>
-            <li><strong><?php echo __('sell_target_percentage'); ?></strong>: <?php echo __('sell_target_info'); ?></li>
+            <li><strong><?php echo __('buy_dip'); ?></strong>: <?php echo __('buy_dip_info'); ?></li>
+            <li><strong><?php echo __('sell_target'); ?></strong>: <?php echo __('sell_target_info'); ?></li>
         </ul>
     </section>
 
@@ -37,10 +37,15 @@ require_once(__DIR__  . '/header.php');
         <h2><?php echo __('future_implementations'); ?></h2>
         <p><?php echo __('future_implementations_text'); ?></p>
         <ul>
-            <li><?php echo __('future_point_1'); ?></li>
+            <li><?php echo __('future_point_1'); ?> 
+                <a href="models.php"><strong><?php echo __('models'); ?></strong></a>).
+            </li>
             <li><?php echo __('future_point_2'); ?></li>
             <li><?php echo __('future_point_3'); ?></li>
-        </ul>
+            <li><?php echo __('future_point_4'); ?>
+                <a href="trade_history.php"><strong><?php echo __('trade_history'); ?></strong></a>.
+            </li>
+            </ul>
     </section>
 </div>
 
