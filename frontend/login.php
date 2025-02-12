@@ -8,11 +8,11 @@ require_once(__DIR__  . '/header.php');
     <form id="loginForm" method="POST">
         <div class="mb-3">
             <label for="username" class="form-label"><?php echo __('username_label'); ?></label>
-            <input type="string" class="form-control" id="username" name="username" required>
+            <input type="string" maxlength="32" class="form-control" id="username" name="username" required>
         </div>
         <div class="mb-3">
             <label for="password" class="form-label"><?php echo __('password_label'); ?></label>
-            <input type="password" class="form-control" id="password" name="password" required>
+            <input type="password" maxlength="16" class="form-control" id="password" name="password" required>
         </div>
         <button type="submit" class="btn btn-primary w-100"><?php echo __('login'); ?></button>
     </form>

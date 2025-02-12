@@ -71,17 +71,20 @@ function register($uname, $passwd)
     global $INDEX_USER_ID;
     global $INDEX_USERNAME;
 
-    $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES(?, ?)");
-    $stmt->bindParam(1, $uname);
-    $stmt->bindParam(2, $passwd);
-    if($stmt->execute())
-    {
+    try {
+        $stmt = $pdo->prepare("INSERT INTO users (username, password) VALUES(?, ?)");
+        $stmt->bindParam(1, $uname);
+        $stmt->bindParam(2, $passwd);
+        $stmt->execute();
+    
         login($uname, $passwd);
         return ['succsess' => true, 'message' => "Registration successful"];
-    }
-    else 
-    {
-        return ['succsess' => false, 'message' => "Registration failed"];
+    } catch (\Throwable $th) {
+        if(str_contains($th->getMessage(),'Duplicate entry'))
+        {
+            return ['succsess' => false, 'message' => "User already registered"];
+        }
+        return ['succsess' => false, 'message' => "Registration failed, SQL error"];
     }
 }
 ?>
