@@ -12,7 +12,9 @@
 
 <footer class="py-3 my-4 border-top text-light">
   <div class="container d-flex flex-wrap justify-content-between align-items-center">
-    <p class="col-md-4 mb-0">&copy; <?php echo date("Y"); ?> Trading Bot. All rights reserved.</p>
+    <p class="col-md-4 mb-0">&copy; <?php echo date("Y"); ?> Trading Bot. 
+        <a href="https://github.com/xvojta/trading_bot" target="_blank" rel="noopener noreferrer">https://github.com/xvojta/trading_bot</a>
+    </p>
 
     <ul class="nav col-md-4 justify-content-center align-items-center text-secondary">
       <?php require(__DIR__ . '/menu_items.php');?>
@@ -35,6 +37,15 @@
     ?>
   </div>
 </footer>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var tooltipTriggerList = [].slice.call(document.querySelectorAll('[data-bs-toggle="tooltip"]'));
+        tooltipTriggerList.map(function (tooltipTriggerEl) {
+            return new bootstrap.Tooltip(tooltipTriggerEl);
+        });
+    });
+</script>
 
 </body>
 </html>

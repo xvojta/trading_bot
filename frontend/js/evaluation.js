@@ -11,6 +11,14 @@ function translate(key) {
   return translations[key] || key;
 }
 
+//function to insert HTML
+const createRow = (label, value) => {
+  const row = document.createElement("p");
+  row.classList.add("fs-5", "text-left", "my-2");
+  row.innerHTML = `<strong>${translate(label)}:</strong> ${value}`;
+  return row;
+};
+
 // Graph settings
 const ctx = document.getElementById('valueOverTimeChart').getContext('2d');
 const valueOverTimeChart = new Chart(ctx, {
@@ -63,6 +71,7 @@ function fetchModels() {
           modelSelect.appendChild(option);
         });
         get_model_status(data[0].id); // Get the selected model status
+
       } else {
         document.getElementById('status').textContent = translate('no_models_available');
       }
@@ -119,13 +128,6 @@ function evaluate_model() {
       const container = document.getElementById("evaluation");
       container.innerHTML = "";
 
-      const createRow = (label, value) => {
-        const row = document.createElement("p");
-        row.classList.add("fs-5", "text-left", "my-2");
-        row.innerHTML = `<strong>${translate(label)}:</strong> ${value}`;
-        return row;
-      };
-        
       const formatFloat = (num) => parseFloat(num).toFixed(3);
 
       container.appendChild(createRow("evaluation", `${formatFloat(data.evaluation)}%`));
@@ -147,6 +149,9 @@ function evaluate_model() {
 }
 
 function get_model_status(modelId) {
+  const modelInfo = document.getElementById('modelInfo');
+  modelInfo.innerHTML = '';
+
   fetch('../backend/controllers/model_status.php', {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -154,10 +159,16 @@ function get_model_status(modelId) {
   }).then(response => response.json())
   .then(data => {
     if(data.success) {
-      running = Boolean(data.running[0].running);
+      running = Boolean(data.running);
       document.getElementById("startModel").disabled = running;
       document.getElementById("stopModel").disabled = !running;
-    }
+
+      const formatFloat = (num) => parseFloat(num).toFixed(1);
+
+      modelInfo.appendChild(createRow("buy_dip", `${formatFloat(data.dip)}%`));
+      modelInfo.appendChild(createRow("sell_target", `${formatFloat(data.sell)}%`));
+      modelInfo.appendChild(createRow("volume_per_trade", `${formatFloat(data.amount)}$`));
+  }
   });
 }
 

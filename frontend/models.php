@@ -20,12 +20,15 @@ require_once(__DIR__  . '/header.php');
       <button class="btn btn-danger w-100 mb-3" id="stopModel"><?php echo __('stop_model'); ?></button>
     </div>
   </div>
+  <div id="modelInfo"></div>
 
   <div style="height: 70px;"></div>
   <h3 class="text-center"><?php echo __('evaluate_model'); ?></h3>
 
   <div class="row">
-    <label for="balance" class="form-label"><?php echo __('usd_balance'); ?></label>
+    <label for="balance" class="form-label"><?php echo __('usd_balance'); ?>
+      <i class="bi bi-info-circle" data-bs-toggle="tooltip" title="<?php echo __('evaluate_model');?>"></i>
+    </label>
     <input type="number" class="form-control" id="balance" value="500" required>
     <div style="height: 10px;"></div>
     <button class="btn btn-warning w-100" id="evaluateModel"><?php echo __('evaluate_button'); ?></button>
