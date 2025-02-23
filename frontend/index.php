@@ -4,7 +4,7 @@ require_once(__DIR__  . '/header.php');
 if($logged_in)
     echo '
         <script>
-            window.location.href = "models.php";
+            window.location.href = "about.php";
         </script>
     ';
 ?>

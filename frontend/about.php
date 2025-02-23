@@ -8,6 +8,14 @@ require_once(__DIR__  . '/header.php');
     <section class="mt-4">
         <h2><?php echo __('overview'); ?></h2>
         <p><?php echo __('overview_text'); ?></p>
+        <p>
+            <?php echo __('text_eth_1'); ?>
+            <a href="https://cs.wikipedia.org/wiki/Ethereum" target="_blank" rel="noopener noreferrer">(<?php echo __('more_here'); ?>)</a>
+        </p>
+        <p>
+            <?php echo __('text_eth_2'); ?>
+            <a href="https://www.kraken.com/" target="_blank" rel="noopener noreferrer">(<?php echo __('more_here'); ?>)</a>
+        </p>
     </section>
 
     <section class="mt-4">
@@ -47,7 +55,7 @@ require_once(__DIR__  . '/header.php');
             </li>
             </ul>
     </section>
-</div>
+</>
 
 <?php
 require_once(__DIR__  . '/footer.php');

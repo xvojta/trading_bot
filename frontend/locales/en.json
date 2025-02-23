@@ -16,8 +16,8 @@
     "logging_out": "Logging out...",
     "control_models": "Control Trading Models",
     "select_model": "Select model",
-    "start_model": "Start Model",
-    "stop_model": "Stop Model",
+    "start_model": "Start real trading",
+    "stop_model": "Stop real trading",
     "evaluate_model": "Evaluate Model",
     "usd_balance": "USD fictional account balance",
     "usd_balance_info": "The amount of fictional balance available for trading during evaluation",
@@ -62,7 +62,10 @@
     "trading_bot_platform": "Trading Bot Platform",
     "overview": "Overview",
     "overview_text": "This platform allows users to create and evaluate trading models based on historical data from the last year. You can sign up, create models, customize their settings, and test them against real past market conditions.",
-    
+    "text_eth_1": "The platform supports trading with the cryptocurrency Ethereum (abbreviated as ETH). It is the second most traded cryptocurrency in the world, right after Bitcoin.",
+    "text_eth_2": "For trading and data collection, the online exchange Kraken was used.",
+    "more_here": "more here",
+        
     "how_it_works": "How It Works",
     "create_account": "Create an Account",
     "create_account_text": "Register and log in to access the model creation features.",

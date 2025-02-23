@@ -27,7 +27,6 @@ require_once(__DIR__  . '/header.php');
                 <i class="bi bi-info-circle" data-bs-toggle="tooltip" title="<?php echo __('volume_per_trade_info');?>"></i>
             </label>
             <input type="number" class="form-control" id="amount" value="500" required>
-            <input type="range" class="form-range" id="floatRange" min="0" max="1000" step="1" value="500" oninput="updateFloatValue(this.value)">
         </div>
         <button type="submit" class="btn btn-primary w-100"><?php echo __('save_model'); ?></button>
     </form>

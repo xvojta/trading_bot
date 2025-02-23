@@ -16,8 +16,8 @@
     "logging_out": "Odhlašování...",
     "control_models": "Ovládání obchodních modelů",
     "select_model": "Vyberte model",
-    "start_model": "Spustit model",
-    "stop_model": "Zastavit model",
+    "start_model": "Spustit reálné obchodování",
+    "stop_model": "Zastavit reálné obchodování",
     "evaluate_model": "Evaluovat model",
     "usd_balance": "Fiktivní zůstatek účtu v USD",
     "usd_balance_info": "Výše fiktivního zůstatku, kterou je možno zobchodovat v rámci evaluace",
@@ -62,7 +62,10 @@
     "trading_bot_platform": "Automatická Obchodní Platforma",
     "overview": "Přehled",
     "overview_text": "Tato platforma umožňuje uživatelům vytvářet a evaluovat obchodní modely na základě historických dat z posledního roku. Můžete se zaregistrovat, vytvářet modely, přizpůsobovat jejich nastavení a testovat je proti reálným historickým tržním podmínkám.",
-    
+    "text_eth_1": "Platforma podporuje obchodování s kryptoměnou ethereum (zkráceně ETH). Jedná se o druhou nejobchodovanější kryptoměnu světa hned po Bitcoin.",
+    "text_eth_2": "Pro obchodování a sběr dat byla využita online burza Kraken.",
+    "more_here": "více zde",
+
     "how_it_works": "Jak to funguje",
     "create_account": "Vytvořit účet",
     "create_account_text": "Registrujte se a přihlaste se k přístupu k funkcím vytváření modelů.",
@@ -76,7 +79,7 @@
     
     "future_implementations": "Možnost budoucího rozšíření projektu",
     "future_implementations_text": "Tento projekt je připraven k nasazení reálného obchodování prostřednictvím Kraken API, tato funkcionalita však není součastí maturitní práce:",
-    "future_point_1": "Pomocí pravidelně běžícího PHP scriptu se každý den ověří ceny ETH právě běžících modelů (možnost zapnutí a vypnutí v záložce ",
+    "future_point_1": "Pomocí pravidelně běžícího PHP scriptu se každý den ověří ceny ETH právě běžících modelů (možnost spuštění a zastavení v záložce ",
     "future_point_2": "Pokud jsou splněny nastavené hodnoty, budou provedeny reálné nákupní/prodejní transakce podle nastavení modelu na vašem účtu na platformě Kraken.",
     "future_point_3": "Toto umožní realizovat otestované obchodní strategie na reálném trhu.",
     "future_point_4": "Provedené transakce se následně uloží do databáze a je možno si je zobrazit v záložce "

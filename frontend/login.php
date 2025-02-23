@@ -33,7 +33,7 @@ require_once(__DIR__  . '/header.php');
                     <script>
                         // Redirect to the main page after 1 second (1000 milliseconds)
                         setTimeout(function() {
-                            window.location.href = 'models.php';
+                            window.location.href = 'index.php';
                         }, 1000);
                     </script>
                 ";

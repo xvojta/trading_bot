@@ -17,7 +17,10 @@
     </p>
 
     <ul class="nav col-md-4 justify-content-center align-items-center text-secondary">
-      <?php require(__DIR__ . '/menu_items.php');?>
+        <?php 
+            if($logged_in)
+                require(__DIR__ . '/menu_items.php');
+        ?>
     </ul>
 
     <form method="POST">
